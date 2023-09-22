@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace MakeCompatibleTests;
+namespace AdapterTests;
 
 public abstract class Spec
 {
