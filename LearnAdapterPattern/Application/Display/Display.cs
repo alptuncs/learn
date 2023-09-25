@@ -14,14 +14,8 @@ public abstract class Display : IDisplay
         MultimediaPort = multimediaPort;
     }
 
-    public virtual bool TryConnect(IDevice device, IMultimediaCable multimediaCable)
-    {
-        if (!MultimediaPort.TryConnect(multimediaCable)) { return false; }
-
-        device.TryAddConnection(this, multimediaCable);
-
-        return true;
-    }
+    public virtual bool TryConnect(IDevice device, IMultimediaCable multimediaCable) =>
+        MultimediaPort.TryConnect(multimediaCable) && device.TryAddConnection(this, multimediaCable);
     public virtual void UpdateDisplay(string update) { }
 
     bool IDisplay.TryConnect(IDevice device, IMultimediaCable multimediaCable) =>

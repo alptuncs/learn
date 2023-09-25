@@ -1,4 +1,6 @@
-﻿using Application.MultiMediaCable;
+﻿using Application.Device;
+using Application.Display;
+using Application.MultiMediaCable;
 using Application.MultiMediaPort;
 using Moq;
 
@@ -13,13 +15,11 @@ public static class SpecExtensions
         return result.Object;
     }
 
-    public static IMultimediaPort AMultimediaPort(this Spec.Mocker mockMe, IMultimediaCable? compatibleCable = default)
+    public static IMultimediaPort AMultimediaPort(this Spec.Mocker mockMe, IMultimediaCable compatibleCable)
     {
         var result = new Mock<IMultimediaPort>();
 
-        result.Setup(p => p.CompatibleCable).Returns(compatibleCable ?? mockMe.AMultiMediaCable());
-
-        result.Setup(p => p.TryConnect(It.Is<IMultimediaCable>(c => c.GetType().IsAssignableTo(result.Object.CompatibleCable.GetType()))))
+        result.Setup(p => p.TryConnect(It.Is<IMultimediaCable>(c => c.GetType().IsAssignableTo(compatibleCable.GetType()))))
             .Returns(true);
 
         return result.Object;
@@ -31,4 +31,13 @@ public static class SpecExtensions
 
         return result.Object;
     }
+
+    public static TV ATV(this Spec.Stubber _) => new();
+
+    public static Laptop ALaptop(this Spec.Stubber _) => new();
+
+    public static HDMIUSBCAdapter AnAdapter(this Spec.Stubber giveMe) => new(giveMe.AnHDMICable());
+
+    public static HDMICable AnHDMICable(this Spec.Stubber _) => new();
+    public static USBCCable AUSBCCable(this Spec.Stubber _) => new();
 }

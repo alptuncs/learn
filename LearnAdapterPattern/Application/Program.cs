@@ -9,7 +9,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        var laptop = new Laptop(new HDMI());
+        var laptop = new Laptop();
         var display = new TV();
 
         Console.WriteLine("With HDMI cable");
