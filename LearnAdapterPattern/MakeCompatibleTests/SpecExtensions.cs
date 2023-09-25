@@ -33,11 +33,10 @@ public static class SpecExtensions
     }
 
     public static TV ATV(this Spec.Stubber _) => new();
+    public static HDMICable AnHDMICable(this Spec.Stubber _) => new();
 
     public static Laptop ALaptop(this Spec.Stubber _) => new();
+    public static USBCCable AUSBCCable(this Spec.Stubber _) => new();
 
     public static HDMIUSBCAdapter AnAdapter(this Spec.Stubber giveMe) => new(giveMe.AnHDMICable());
-
-    public static HDMICable AnHDMICable(this Spec.Stubber _) => new();
-    public static USBCCable AUSBCCable(this Spec.Stubber _) => new();
 }

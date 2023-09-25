@@ -29,8 +29,8 @@ public class Compatibility : Spec
     public void Display_can_connect_to_device_using_compatible_cable()
     {
         var compatibleCable = new XCable();
-        var device = new XDevice(MockMe.AMultimediaPort(compatibleCable));
         var display = new XDisplay(MockMe.AMultimediaPort(compatibleCable));
+        var device = new XDevice(MockMe.AMultimediaPort(compatibleCable));
 
         display.TryConnect(device, compatibleCable).ShouldBeTrue();
     }
@@ -71,9 +71,9 @@ public class Compatibility : Spec
     [Test]
     public void TV_can_connect_to_Laptop_using_adapter()
     {
+        var adapter = GiveMe.AnAdapter();
         var tV = GiveMe.ATV();
         var laptop = GiveMe.ALaptop();
-        var adapter = GiveMe.AnAdapter();
 
         tV.TryConnect(laptop, adapter).ShouldBeTrue();
     }
