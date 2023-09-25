@@ -1,7 +1,6 @@
 ﻿using Application.Device;
 using Application.Display;
 using Application.MultiMediaCable;
-using Application.MultiMediaPort;
 
 namespace Application;
 
